@@ -25,4 +25,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     except Exception as e:
         logging.error(f"Error: {e}")
-        return func.HttpResponse("Internal error", status_code=500)
+        return func.HttpResponse(e, status_code=500)
