@@ -18,8 +18,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             return func.HttpResponse("Missing 'query' parameter", status_code=400)
 
         # Get session_id and user_id from the request (e.g., headers or query params)
-        user_id = req.headers.get("X-User-ID", "default_user")
-        session_id = req.headers.get("X-Session-ID", "default_session")
+        user_id = req.headers.get("X-User-ID", USER_ID)
+        session_id = req.headers.get("X-Session-ID", SESSION_ID)
 
         # Initialize the persistent session service and runner if they are not global or
         # if the global instance needs to be re-initialized due to cold start.
@@ -32,8 +32,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         session_service = InMemorySessionService() # Placeholder - replace with persistent service
         # Check if session exists, otherwise create it (or let ADK handle it)
         try:
+            logging.info(f">>> Getting session for user_id: {user_id}, session_id: {session_id}")
             session_service.get_session(app_name=APP_NAME, user_id=user_id, session_id=session_id)
         except ValueError: # Session not found, create it
+            logging.info(f">>> Creating session for user_id: {user_id}, session_id: {session_id}")
             session_service.create_session(app_name=APP_NAME, user_id=user_id, session_id=session_id)
 
         runner = Runner(agent=root_agent, app_name=APP_NAME, session_service=session_service)
