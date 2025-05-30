@@ -1,27 +1,19 @@
 from google.adk.agents import LlmAgent
-from google.adk.tools import Tool, ToolCall, ToolCallResult
+from google.adk.tools import FunctionTool
 
 # --- TOOL DEFINITION ---
-class SearchManualsTool(Tool):
-    name = "search_manuals"
-    description = "Search manuals and provide step-by-step instructions."
+def search_manuals(query: str) -> dict:    
+    return {"status": "success", "report": f"Steps for '{query}': 1. Read the manual. 2. Follow instructions. 3. Done!"}
 
-    def call(self, tool_call: ToolCall) -> ToolCallResult:
-        query = tool_call.input.get("query", "")
-        return ToolCallResult(
-            output={
-                "result": f"Steps for '{query}': 1. Read the manual. 2. Follow instructions. 3. Done!"
-            }
-        )
+search_manuals_tool = FunctionTool(func=search_manuals)
 
 # --- AGENT SETUP ---
 root_agent = LlmAgent(
     name="instruction_bot",
     model="gpt-4o-mini",  # Replace with model available to you
     description="An assistant that helps users get step-by-step instructions.",
-    instructions=(
-        "You are a helpful assistant. Provide concise, accurate manuals or steps to complete tasks. "
-        "If needed, use the 'search_manuals' tool."
+    tools=[search_manuals_tool],
+    instruction=(
+        "You are a helpful assistant. Provide concise, accurate manuals or steps to complete tasks. If needed, use the 'search_manuals' tool."
     ),
-    tools=[SearchManualsTool()],
 )

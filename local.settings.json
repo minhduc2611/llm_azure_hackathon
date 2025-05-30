@@ -3,6 +3,5 @@
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "CfDJ8Cq2VMLz5WZAigG9Stpuj1kO2u37rTU/givWs/8TnMhjGqnHAeaLD6mM+kEtEsQy5y7fB7rLYcbi36XCsi3FFuPL5Q2/IagCThVbkUHX9C+DrUdLsVRmcV3PRwCx8DcCYw=="
   },
-  "ConnectionStrings": {},
-  "azureFunctions.scmDoBuildDuringDeployment": true
+  "ConnectionStrings": {}
 }
