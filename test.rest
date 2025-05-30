@@ -10,5 +10,5 @@ GET https://llm-azure-hackathon.azurewebsites.net/api/HttpTrigger1?query=Sam Alt
 ###
 
 ###
-GET http://localhost:7071/api/ChatAgent?query=hello, i need to fix my car tire
-###
+GET http://localhost:7071/api/ChatAgent?query=give me the steps to fix a KONE elevator buttons 
+
