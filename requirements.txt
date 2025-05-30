@@ -6,3 +6,4 @@ requests
 azure-functions
 litellm
 azure-storage-blob
+cryptography==39.0.2
