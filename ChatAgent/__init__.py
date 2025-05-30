@@ -40,6 +40,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         runner = Runner(agent=root_agent, app_name=APP_NAME, session_service=session_service)
 
+        logging.info(f">>> Running agent for user_id: {user_id}, session_id: {session_id}, query: {query}")
         # Interact with ADK agent
         events = runner.run(user_id=user_id, session_id=session_id, new_message=query)
         final_response = ""
