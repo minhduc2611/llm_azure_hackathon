@@ -35,19 +35,23 @@ def messages_for(website):
     
     
 def gen_summary(url):
-    beautiful_print(f"Generating summary for {url}")
-    theUrl = f"https://en.wikipedia.org/wiki/{url.replace(' ', '_')}"
-    beautiful_print(f"The URL is {theUrl}")
-    website = Website(theUrl)
-    beautiful_print(f"Contents is fetched")
-    instance = load_open_ai()
-    beautiful_print(f"Generating summary...")
-    response = instance.chat.completions.create(
-        model = "gpt-4o-mini",
-        messages= messages_for(website)
-    )
-    beautiful_print(f"Summary generated")
-    return response.choices[0].message.content
+    try:
+        beautiful_print(f"Generating summary for {url}")
+        theUrl = f"https://en.wikipedia.org/wiki/{url.replace(' ', '_')}"
+        beautiful_print(f"The URL is {theUrl}")
+        website = Website(theUrl)
+        beautiful_print(f"Contents is fetched")
+        instance = load_open_ai()
+        beautiful_print(f"Generating summary...")
+        response = instance.chat.completions.create(
+            model = "gpt-4o-mini",
+            messages= messages_for(website)
+        )
+        beautiful_print(f"Summary generated")
+        return response.choices[0].message.content
+    except Exception as e:
+        logging.error(f"Error generating summary: {e}")
+        return f"Error generating summary: {e}"
 
 def beautiful_print(text):
     logging.info(text)
