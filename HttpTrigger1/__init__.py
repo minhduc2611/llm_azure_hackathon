@@ -2,10 +2,8 @@ import logging
 import azure.functions as func
 import os
 import openai
-import requests
-from bs4 import BeautifulSoup
 from dotenv import load_dotenv
-from summary import gen_summary
+from utils.summary import gen_summary
 # Load .env
 load_dotenv()
 

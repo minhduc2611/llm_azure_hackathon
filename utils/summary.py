@@ -1,4 +1,4 @@
-from my_open_ai import load_open_ai
+from utils.my_open_ai import load_open_ai
 from bs4 import BeautifulSoup
 import requests
 import logging
