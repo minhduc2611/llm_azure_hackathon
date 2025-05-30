@@ -4,11 +4,15 @@
 
 GET http://localhost:7071/api/HttpTrigger1?query=Donald Trump
 
+###
+GET http://localhost:7071/api/ChatAgent?query=give me the steps to fix a KONE elevator buttons
 
+
+
+# ============PRODUCTION============================================================================================================
 ###
 GET https://llm-azure-hackathon.azurewebsites.net/api/HttpTrigger1?query=Sam Altman
 ###
+GET https://llm-azure-hackathon.azurewebsites.net/api/ChatAgent?query=Hello
 
-###
-GET http://localhost:7071/api/ChatAgent?query=give me the steps to fix a KONE elevator buttons 
 
