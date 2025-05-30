@@ -101,6 +101,10 @@ jobs:
         client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D38A540F17C34CE1B3B2B9B108C87419 }}
         tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_46DB2D901D6449FF946B45C872871C96 }}
         subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8F0DA6B1FEBB4F7198D729C56EFEE825 }}
+
+    - name: Clear existing Python packages
+      run: |
+        rm -rf .python_packages
     - name: 'Resolve Project Dependencies Using Pip'
       shell: bash
       run: |
