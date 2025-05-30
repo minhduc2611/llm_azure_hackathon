@@ -9,3 +9,6 @@ GET http://localhost:7071/api/HttpTrigger1?query=Donald Trump
 GET https://llm-azure-hackathon.azurewebsites.net/api/HttpTrigger1?query=Sam Altman
 ###
 
+###
+GET http://localhost:7071/api/ChatAgent?query=hello, i need to fix my car tire
+###

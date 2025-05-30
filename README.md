@@ -1,24 +1,29 @@
+
+# Create a new virtual environment
+```
+python3.11.7 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+
 # Test Locally
 
 ```
-pip install -r requirements.txt
 func start
 ```
 
-# Deploy to Azure
-
+# Create a new function
 ```
-az login
-func azure functionapp publish llm-azure-hackathon
+func new --template "HTTP trigger" --name <function-name>
 ```
 
+# Install dependencies
 ```
-    {
-      "linux_fx_version": "Python|3.12",
-      "runtime": "python",
-      "supported_functions_versions": [
-        "4"
-      ],
-      "version": "3.12"
-    }
+pip install <package-name>
+```
+
+# Freeze dependencies
+```
+pip freeze > requirements.txt
 ```
