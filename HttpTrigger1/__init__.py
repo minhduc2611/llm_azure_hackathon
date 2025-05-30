@@ -13,10 +13,12 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     try:
+        logging.info("Starting the function")
         query = req.params.get("query")
         if not query:
             return func.HttpResponse("Missing 'query' parameter", status_code=400)
-        print(query)
+        logging.info(f"Query: {query}")
+        
         summary = gen_summary(query)
 
         return func.HttpResponse(summary)

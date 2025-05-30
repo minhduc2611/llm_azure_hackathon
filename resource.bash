@@ -1,6 +1,6 @@
 # Variables
 RESOURCE_GROUP="llm-hack-rg"
-STORAGE_ACCOUNT="llmhackstorage$RANDOM"
+STORAGE_ACCOUNT="llmhackstorage_1748567088719"
 FUNCTION_APP="llm-azure-hackathon"
 LOCATION="northeurope"
 

@@ -1,7 +1,7 @@
 from my_open_ai import load_open_ai
 from bs4 import BeautifulSoup
 import requests
-
+import logging
 system_prompt = """
 You are a helpful assistant that summarizes text.
 """
@@ -35,19 +35,19 @@ def messages_for(website):
     
     
 def gen_summary(url):
-    beautiful_print(f"Generating summary for {url}", 34)
+    beautiful_print(f"Generating summary for {url}")
     theUrl = f"https://en.wikipedia.org/wiki/{url.replace(' ', '_')}"
-    beautiful_print(f"The URL is {theUrl}", 34)
+    beautiful_print(f"The URL is {theUrl}")
     website = Website(theUrl)
-    beautiful_print(f"Contents is fetched", 34)
+    beautiful_print(f"Contents is fetched")
     instance = load_open_ai()
-    beautiful_print(f"Generating summary...", 34)
+    beautiful_print(f"Generating summary...")
     response = instance.chat.completions.create(
         model = "gpt-4o-mini",
         messages= messages_for(website)
     )
-    beautiful_print(f"Summary generated", 34)
+    beautiful_print(f"Summary generated")
     return response.choices[0].message.content
 
-def beautiful_print(text, color):
-    print(f"\033[{color}m{text}\033[0m")
+def beautiful_print(text):
+    logging.info(text)
