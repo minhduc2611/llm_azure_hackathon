@@ -8,16 +8,21 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.adk.memory import InMemoryMemoryService
 from google.genai import types
+from utils.cors import add_cors_headers
 
 APP_NAME="ChatAgent"
 USER_ID="user1234"
 SESSION_ID="1234"
 
 async def main(req: func.HttpRequest) -> func.HttpResponse:
+    # Handle preflight OPTIONS request
+    if req.method == "OPTIONS":
+        return add_cors_headers(func.HttpResponse(status_code=200))
+
     try:
         query = req.params.get("query")
         if not query:
-            return func.HttpResponse("Missing 'query' parameter", status_code=400)
+            return add_cors_headers(func.HttpResponse("Missing 'query' parameter", status_code=400))
 
         # Get session_id and user_id from the request (e.g., headers or query params)
         user_id = req.headers.get("X-User-ID", USER_ID)
@@ -62,8 +67,8 @@ async def main(req: func.HttpRequest) -> func.HttpResponse:
         memory_service = await memory_service.add_session_to_memory(completed_session1)
         print("Session added to memory.")
         
-        return func.HttpResponse(final_response, status_code=200)
+        return add_cors_headers(func.HttpResponse(final_response, status_code=200))
 
     except Exception as e:
         logging.error(f"Error: {e}")
-        return func.HttpResponse(str(e), status_code=500)
+        return add_cors_headers(func.HttpResponse(str(e), status_code=500))
