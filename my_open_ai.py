@@ -23,7 +23,12 @@ def load_env():
 # // singleton pattern
 openaiInstance = None
 def load_open_ai():
-    global openaiInstance
-    if not openaiInstance:
-        openaiInstance = OpenAI(api_key=load_env())
-    return openaiInstance
+    logging.info("Loading OpenAI")
+    try:
+        global openaiInstance
+        if not openaiInstance:
+            openaiInstance = OpenAI(api_key=load_env())
+            return openaiInstance
+    except Exception as e:
+        logging.error(f"Error loading OpenAI: {e}")
+        return None

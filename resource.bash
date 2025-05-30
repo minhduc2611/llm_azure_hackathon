@@ -24,9 +24,11 @@ LOCATION="northeurope"
 # deploy the app 
 
 # zip the app exclude git and resource.bash and .env
-zip -r functionapp.zip . -x "*.git*" -x "resource.bash" -x ".env"
+# zip -r functionapp.zip . -x "*.git*" -x "resource.bash" -x ".env"
 
-az functionapp deployment source config-zip \
-  --name $FUNCTION_APP \
-  --resource-group $RESOURCE_GROUP \
-  --src functionapp.zip
+# az functionapp deployment source config-zip \
+#   --name $FUNCTION_APP \
+#   --resource-group $RESOURCE_GROUP \
+#   --src functionapp.zip
+
+az functionapp log stream --name $FUNCTION_APP --resource-group $RESOURCE_GROUP
